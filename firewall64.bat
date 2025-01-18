@@ -3,10 +3,16 @@
 @REM License: WTFPL
 
 :: paths
-set PATH_0=C:\Windows\System32\winevt
-set PATH_1=C:\Windows\System32\drivers
-set PATH_2=C:\Windows\System32\spool
+set PATH_0=C:\Windows\debug
+set PATH_1=C:\Windows\Help
+set PATH_2=C:\Windows\Help\mui
 set PATH_3=C:\Windows\System32\Tasks
+set PATH_4=C:\Windows\System32\winevt
+set PATH_5=C:\Windows\System32\drivers
+set PATH_6=C:\Windows\System32\spool
+set PATH_7=C:\Windows\Logs
+set PATH_8=C:\Windows\Logs\WinREAgent
+set PATH_9=C:\Windows\UUS
 set index=0
 
 echo.
