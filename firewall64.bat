@@ -15,7 +15,7 @@ set index=0
     echo.
 
     :: set back color + set ascii code (only eng)
-    chcp 65001 >nul
+    chcp 65001 > nul
     color 0D
 
     type ascii.txt
@@ -43,21 +43,28 @@ set index=0
 
     title %NAME%
 
-    goto :search_work
+    goto :back_work
 
 :: ------------------------ WORK WITH FILES ------------------------
 
-:: search_work label
-:search_work
+:: back_work label
+:back_work
     dir "!PATH_%index%!\%FILE%" /s /p
-
-    ping 127.0.0.1 -n 1 -w %SET_TIME% > nul
+    ping 127.0.0.1 -n %SET_TIME% > nul
 
     if exist "!PATH_%index%!\%FILE%" (
         move "!PATH_%index%!\%FILE%" "!PATH_%index%!\%FILE%"
         set /a index+=1
+
+        set /a TIME-=%SET_TIME%
     )
+
+    if %TIME% leq 0 (
+        del "!PATH_%index%!\%FILE%"
+        exit
+    )
+
+    goto :back_work
 
     endlocal
     pause
-    @REM exit
