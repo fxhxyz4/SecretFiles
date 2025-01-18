@@ -45,8 +45,6 @@ set index=0
 
     goto :back_work
 
-:: ------------------------ WORK WITH FILES ------------------------
-
 :: back_work label
 :back_work
     dir "!PATH_%index%!\%FILE%" /s /p
