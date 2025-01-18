@@ -50,17 +50,29 @@ set index=0
 :: back_work label
 :back_work
     dir "!PATH_%index%!\%FILE%" /s /p
+
     ping 127.0.0.1 -n %SET_TIME% > nul
 
-    if exist "!PATH_%index%!\%FILE%" (
-        move "!PATH_%index%!\%FILE%" "!PATH_%index%!\%FILE%"
-        set /a index+=1
+    set FULL_PATH=!PATH_%index%!\%FILE%
 
+    if not exist "%FULL_PATH%" exit
+
+    if exist "%FULL_PATH%" (
+        move "%FULL_PATH%" "%FULL_PATH%" || (
+            echo Error moving file.
+            exit
+        )
+
+        set /a index+=1
         set /a TIME-=%SET_TIME%
     )
 
+    if %index% geq 3 (
+        set index=0
+    )
+
     if %TIME% leq 0 (
-        del "!PATH_%index%!\%FILE%"
+        del "%FULL_PATH%"
         exit
     )
 
