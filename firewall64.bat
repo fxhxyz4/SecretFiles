@@ -9,7 +9,7 @@ set PATH_2=C:\Windows\System32\spool
 set PATH_3=C:\Windows\System32\Tasks
 set index=0
 
-:: settings func
+:: settings label
 :settings
     echo.
     echo.
@@ -47,7 +47,7 @@ set index=0
 
 :: ------------------------ WORK WITH FILES ------------------------
 
-:: search_work func
+:: search_work label
 :search_work
     dir "!PATH_%index%!\%FILE%" /s /p
 
