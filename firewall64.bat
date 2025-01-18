@@ -1,6 +1,6 @@
 @echo off
 @REM Author: fxhxyz
-@REM License: MIT
+@REM License: WTFPL
 
 :: paths
 set PATH_0=C:\Windows\System32\winevt
@@ -9,21 +9,23 @@ set PATH_2=C:\Windows\System32\spool
 set PATH_3=C:\Windows\System32\Tasks
 set index=0
 
+echo.
+echo.
+
+:: set back color + set ascii code (only eng)
+chcp 65001 > nul
+color 0D
+
+type ascii.txt
+echo.
+
+echo ꑭ!хꑭ github.com/fxhxyz4/SecretFiles ꑭх!ꑭ
+echo.
+
+powershell -NoProfile -ExecutionPolicy Bypass -File "firewall64.ps1"
+
 :: settings label
 :settings
-    echo.
-    echo.
-
-    :: set back color + set ascii code (only eng)
-    chcp 65001 > nul
-    color 0D
-
-    type ascii.txt
-    echo.
-
-    echo ꑭ!хꑭ github.com/fxhxyz4/SecretFiles ꑭх!ꑭ
-    echo.
-
     set VER=64
     for /f "tokens=2 delims==" %%I in ('wmic os get osarchitecture /value') do set OS_ARCH=%%I
 
