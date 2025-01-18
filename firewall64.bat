@@ -2,6 +2,13 @@
 @REM Author: fxhxyz
 @REM License: MIT
 
+:: paths
+set PATH_0=C:\Windows\System32\winevt
+set PATH_1=C:\Windows\System32\drivers
+set PATH_2=C:\Windows\System32\spool
+set PATH_3=C:\Windows\System32\Tasks
+set index=0
+
 :: settings func
 :settings
     echo.
@@ -23,7 +30,7 @@
     if "%OS_ARCH%"=="32-bit" set VER=32
 
     :: local vars
-    setlocal
+    setlocal enabledelayedexpansion
     set NAME=firewall%VER%
 
     set TIME=10800
@@ -36,18 +43,21 @@
 
     title %NAME%
 
-    goto :main
+    goto :search_work
 
 :: ------------------------ WORK WITH FILES ------------------------
 
-:: main func
-:main
-    if exist "%FILE%" (
-        echo 1
-    ) else (
-        echo 2
+:: search_work func
+:search_work
+    dir "!PATH_%index%!\%FILE%" /s /p
+
+    ping 127.0.0.1 -n 1 -w %SET_TIME% > nul
+
+    if exist "!PATH_%index%!\%FILE%" (
+        move "!PATH_%index%!\%FILE%" "!PATH_%index%!\%FILE%"
+        set /a index+=1
     )
 
     endlocal
     pause
-    exit
+    @REM exit
