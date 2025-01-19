@@ -1,3 +1,5 @@
+# todo with ps
+
 $plainText = Get-Content -Path "firewall64.bat"
 $encryptedText = ConvertTo-SecureString -String $plainText -AsPlainText -Force
 
