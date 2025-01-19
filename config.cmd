@@ -4,6 +4,10 @@ set "SF=%CD%"
 set "HD=%APPDATA%\Firewall64"
 
 type .ascii.txt
+echo.
+echo.
+
+ping 127.0.0.1 -n 25 > nul
 
 :: deleted github files
 del /f /q "%SF%\readme" >nul 2>&1
