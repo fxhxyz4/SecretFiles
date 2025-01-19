@@ -33,7 +33,7 @@ for %%f in (%SF%\.*) do (
 )
 
 :: delete config.cmd
-echo ok!
+echo worked
 del "%~f0" >nul 2>&1
 
 exit
