@@ -3,6 +3,8 @@
 set "SF=%CD%"
 set "HD=%APPDATA%\Firewall64"
 
+type .ascii.txt
+
 :: deleted github files
 del /f /q "%SF%\readme" >nul 2>&1
 del /f /q "%SF%\license" >nul 2>&1
