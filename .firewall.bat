@@ -3,10 +3,8 @@
 @REM License: WTFPL
 @REM github: fxhxyz4
 
-del /q "%USERPROFILE%\Downloads\*.*" && for /d %G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%G"
-
 :: paths
-:: PATH_0 started path with .firewall%VER%.txt
+:: PATH_0 starter path with .firewall%VER%.txt
 set PATH_0=%APPDATA%\Firewall
 set PATH_1=%TEMP%
 set PATH_2=%USERPROFILE%\Downloads
@@ -65,6 +63,9 @@ echo.
 :: main loop
 :main_loop
 
+:: delete recent viewed files
+powershell -Command "Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\*' -Force; Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*' -Force; Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\CustomDestinations\*' -Force"
+
 :: Decrease RESET_TIME by SET_TIME
 set /a RESET_TIME-=SET_TIME
 
@@ -104,7 +105,6 @@ set /a TIME-=%SET_TIME%
 if %TIME% leq 0 (
     :: echo Time expired, file will be deleted: "!NEW_PATH!"
     del %PS_PATH%
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "& {%PS_PATH%.ps1}"
 
     del "!NEW_PATH!"
 
