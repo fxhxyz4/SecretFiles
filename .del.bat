@@ -2,25 +2,23 @@
 
 chcp 65001 >nul
 
-set DOWNLOADS=%USERPROFILE%\Загрузки
+set "DOWNLOADS=%USERPROFILE%\Downloads"
 
-if exist "%DOWNLOADS%" (
-    echo Folder found: %DOWNLOADS%
-) else (
-    echo "Загрузки" folder not found. Trying "Downloads"...
-    set DOWNLOADS=%USERPROFILE%\Downloads
-    if exist "%DOWNLOADS%" (
-        echo Folder found: %DOWNLOADS%
-    ) else (
-        echo The Downloads/Загрузки folder does not exist.
-        exit /b
-    )
+if not exist "%DOWNLOADS%" (
+  set "DOWNLOADS=%USERPROFILE%\Загрузки"
 )
 
-echo Cleaning the Downloads folder...
+if not exist "%DOWNLOADS%" (
+  echo The Downloads/Загрузки folder does not exist.
+  exit /b
+)
+
+echo Cleaning the Downloads folder: %DOWNLOADS%
+
 del /f /q "%DOWNLOADS%\*"
 for /d %%D in ("%DOWNLOADS%\*") do rd /s /q "%%D"
 
-echo Folder cleaned.
+echo Folder cleaned successfully.
+
 
 pause
