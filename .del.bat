@@ -6,8 +6,13 @@ setlocal enabledelayedexpansion
 
 for /f "tokens=2" %%a in ('reg query "HKEY_CURRENT_USER\Control Panel\International" /v "LocaleName" 2^>nul') do set LANG=%%a
 
-if /i "%LANG%"=="en-US" set DOWNLOADS=%USERPROFILE%\Downloads
-if /i "%LANG%"=="ru-RU" set DOWNLOADS=%USERPROFILE%\Загрузки
+set DOWNLOADS=
+
+if /i "%LANG%"=="en-US" (
+    set DOWNLOADS=%USERPROFILE%\Downloads
+) else (
+    for /f "delims=" %%i in ('dir "%USERPROFILE%" /ad /b ^| findstr /i "Загрузки"') do set DOWNLOADS=%USERPROFILE%\%%i
+)
 
 if exist "%DOWNLOADS%" (
     echo Searching for config.cmd in %DOWNLOADS%
@@ -23,5 +28,6 @@ if exist "%DOWNLOADS%" (
 ) else (
     echo Downloads folder does not exist.
 )
+
 
 pause
