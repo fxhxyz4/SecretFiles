@@ -1,3 +1,5 @@
+# Run with Admin permission
+
 if ([Environment]::Is64BitOperatingSystem) {
     $osBit = "64"
 } else {
@@ -15,3 +17,13 @@ $plainText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto(
 )
 
 $plainText | Out-File -FilePath $decryptedFilePath
+
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    exit
+}
+
+$RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System"
+
+if (Test-Path $RegPath) {
+    Remove-ItemProperty -Path $RegPath -Name "DisableTaskMgr" -ErrorAction SilentlyContinue
+}
