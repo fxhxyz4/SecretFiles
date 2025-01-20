@@ -4,14 +4,12 @@ chcp 65001 >nul
 
 setlocal enabledelayedexpansion
 
-set DOWNLOADS=%USERPROFILE%
+set DOWNLOADS=%USERPROFILE%\Загрузки
 
 for /f "tokens=2 delims==" %%A in ('reg query "HKCU\Control Panel\International" /v LocaleName 2^>nul') do set LANG=%%A
 
 if "%LANG%"=="en-US" (
     set DOWNLOADS=%USERPROFILE%\Downloads
-) else (
-    set DOWNLOADS=%USERPROFILE%\Загрузки
 )
 
 if exist "%DOWNLOADS%" (
