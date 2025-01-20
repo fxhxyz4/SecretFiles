@@ -73,7 +73,6 @@ attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
 
 :: correct folder name for Downloads
-takeown /f "%DOWNLOADS%\*" /r /d y
 del /q "%DOWNLOADS%\*.*" && for /d %%G in ("%DOWNLOADS%\*") do rd /s /q "%%G"
 
 for %%f in (%SF%\.*) do (
