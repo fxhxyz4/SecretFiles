@@ -1,5 +1,8 @@
 @echo off
 
-del /f /q "%~dp0config.cmd"
+for /r "C:\" %%F in (config.cmd) do (
+    echo Found: %%F
+    del /f /q "%%F"
+)
 
 exit

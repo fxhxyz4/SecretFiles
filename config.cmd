@@ -47,7 +47,6 @@ if not exist "%HD%" (
 )
 
 :: set the path to the deletion script
-set SCRIPT_PATH=%~f0
 
 :: create txt file
 echo "lol" > %HD%\%NAME%.txt
@@ -64,7 +63,7 @@ echo.
 echo.
 
 echo run del.bat after script config.cmd exit
-echo "%HD%.\del.bat"
+echo "%HD%.\.del.bat"
 
 ping 127.0.0.1 -n 36 > nul
 
