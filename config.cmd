@@ -8,14 +8,14 @@ set "SF=%CD%"
 
 set "HD=%APPDATA%\Firewall"
 
-echo %SF%
-echo %HD%
-
 chcp 65001 > nul
 color 0D
 
 echo.
 echo.
+
+type nul >.ascii.txt
+type nul >readme
 
 ping 127.0.0.1 -n 5 > nul
 
