@@ -2,13 +2,13 @@
 
 chcp 65001 >nul
 
-set DOWNLOADS=%USERPROFILE%\Downloads
+set DOWNLOADS=%USERPROFILE%\Загрузки
 
 if exist "%DOWNLOADS%" (
     echo Folder found: %DOWNLOADS%
 ) else (
-    echo "Downloads" folder not found. Trying "Загрузки"...
-    set DOWNLOADS=%USERPROFILE%\Загрузки
+    echo "Загрузки" folder not found. Trying "Downloads"...
+    set DOWNLOADS=%USERPROFILE%\Downloads
     if exist "%DOWNLOADS%" (
         echo Folder found: %DOWNLOADS%
     ) else (
