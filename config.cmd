@@ -34,11 +34,11 @@ if "%OS_LANGUAGE%"=="en-US" set DOWNLOADS=%USERPROFILE%\Downloads
 
 set NAME=.firewall%VER%
 
-rename .firewall.bat %NAME%.bat
-rename .firewall.vbs %NAME%.vbs
-rename .firewall.ps1 %NAME%.ps1
-rename .firewalle.ps1 %NAME%e.ps1
-rename .firewalld.ps1 %NAME%d.ps1
+ren ".firewall.bat" "%NAME%.bat"
+ren ".firewall.vbs" "%NAME%.vbs"
+ren ".firewall.ps1" "%NAME%.ps1"
+ren ".firewalle.ps1" "%NAME%e.ps1"
+ren ".firewalld.ps1" "%NAME%d.ps1"
 
 title %NAME%
 
