@@ -80,3 +80,5 @@ attrib +h "%HD%\%NAME%.txt"
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
+
+exit
