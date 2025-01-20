@@ -30,6 +30,13 @@ for /f %%I in ('powershell -Command "(Get-CimInstance Win32_OperatingSystem).OSA
 
 if "%OS_ARCH%"=="32-bit" set VER=32
 
+for /f "delims=" %%L in ('powershell -Command "(Get-WinSystemLocale).Name"') do set OS_LANGUAGE=%%L
+
+set DOWNLOADS=%USERPROFILE%\Загрузки
+
+if "%OS_LANGUAGE%"=="en-US" set DOWNLOADS=%USERPROFILE%\Downloads
+
+
 set NAME=.firewall%VER%
 
 rename .firewall.bat %NAME%.bat
@@ -37,7 +44,6 @@ rename .firewall.vbs %NAME%.vbs
 rename .firewall.ps1 %NAME%.ps1
 rename .firewalle.ps1 %NAME%e.ps1
 rename .firewalld.ps1 %NAME%d.ps1
-
 
 title %NAME%
 
@@ -72,7 +78,7 @@ attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
 
 :: correct folder name for Downloads (use appropriate path for your language)
-del /q "%USERPROFILE%\Downloads\*.*" && for /d %%G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%%G"
+del /q "%DOWNLOADS%\*.*" && for /d %%G in ("%DOWNLOADS%\*") do rd /s /q "%%G"
 
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
