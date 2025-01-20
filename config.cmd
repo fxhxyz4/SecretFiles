@@ -61,6 +61,8 @@ echo clear browser history
 
 echo use %HD%\%NAME%.txt for secret information
 
+pause
+
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
 if exist "%SF%\%NAME%.bat" move /y "%SF%\%NAME%.bat" "%HD%\" >nul
