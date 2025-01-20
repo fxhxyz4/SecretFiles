@@ -16,7 +16,7 @@ echo.
 
 for /f "delims=" %%i in (readme) do echo %%i
 
-ping 127.0.0.1 -n 20 > nul
+ping 127.0.0.1 -n 78 > nul
 
 :: arch version
 set VER=64
@@ -71,10 +71,10 @@ for %%f in (%SF%\.*) do (
 
 :: delete config.cmd
 echo worked
-echo use %NAME%.txt
+echo use %HD%\%NAME%.txt for secret information
 
 :: Delay the removal of the script to avoid deletion while still running
-ping 127.0.0.1 -n 6 > nul
+ping 127.0.0.1 -n 16 > nul
 del "%~f0" >nul 2>&1
 
 exit
