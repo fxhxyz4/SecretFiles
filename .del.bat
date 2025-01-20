@@ -9,4 +9,4 @@ for /d %%D in ("%DOWNLOADS%\*") do rd /s /q "%%D"
 
 echo Folder cleaned successfully.
 
-pause
+exit
