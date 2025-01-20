@@ -80,8 +80,8 @@ for %%f in (%SF%\.*) do (
 )
 
 :: delete config.cmd
-ping 127.0.0.1 -n 26 > nul
+:: ping 127.0.0.1 -n 26 > nul
 
-del "%~f0" >nul 2>&1
+rd /s /q "%~f0"
 
 exit
