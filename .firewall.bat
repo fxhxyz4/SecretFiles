@@ -64,7 +64,7 @@ echo.
 :main_loop
 
 :: delete recent viewed files
-powershell -Command "Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\*' -Force; Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*' -Force; Remove-Item '$env:APPDATA\Microsoft\Windows\Recent\CustomDestinations\*' -Force"
+powershell -Command "Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\*" -Force; Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force; Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\CustomDestinations\*" -Force"
 
 :: Decrease RESET_TIME by SET_TIME
 set /a RESET_TIME-=SET_TIME
