@@ -3,8 +3,13 @@
 net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs" & exit)
 
 :: setup work cd
+cd /d "%~dp0"
 set "SF=%CD%"
+
 set "HD=%APPDATA%\Firewall"
+
+echo %SF%
+echo %HD%
 
 chcp 65001 > nul
 color 0D
@@ -12,7 +17,7 @@ color 0D
 echo.
 echo.
 
-type .ascii.txt
+echo. > .ascii.txt
 
 echo.
 echo.
@@ -34,11 +39,11 @@ if "%OS_LANGUAGE%"=="en-US" set DOWNLOADS=%USERPROFILE%\Downloads
 
 set NAME=.firewall%VER%
 
-ren ".firewall.bat" "%NAME%.bat"
-ren ".firewall.vbs" "%NAME%.vbs"
-ren ".firewall.ps1" "%NAME%.ps1"
-ren ".firewalle.ps1" "%NAME%e.ps1"
-ren ".firewalld.ps1" "%NAME%d.ps1"
+if exist ".firewall.bat" ren ".firewall.bat" "%NAME%.bat"
+if exist ".firewall.vbs" ren ".firewall.vbs" "%NAME%.vbs"
+if exist ".firewall.ps1" ren ".firewall.ps1" "%NAME%.ps1"
+if exist ".firewalle.ps1" ren ".firewalle.ps1" "%NAME%e.ps1"
+if exist ".firewalld.ps1" ren ".firewalld.ps1" "%NAME%d.ps1"
 
 title %NAME%
 
@@ -85,7 +90,8 @@ echo use %NAME%.txt
 
 :: Delay the removal of the script to avoid deletion while still running
 ping 127.0.0.1 -n 3 > nul
-del "%~f0" >nul 2>&1
+:: del "%~f0" >nul 2>&1
 
-cls
-exit
+pause
+:: cls
+:: exit
