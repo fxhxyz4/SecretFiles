@@ -75,7 +75,7 @@ attrib +h "%HD%\%NAME%.bat"
 attrib +h "%HD%\%NAME%.ps1"
 attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
-attrib +h "%HD%\.firewall.txt"
+attrib +h "%HD%\%NAME%.txt"
 
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
