@@ -39,14 +39,8 @@ or
 
 -------------------------------------------------------------------
 
-For file encryption to base64 use:
-.firewalle(64 or 32 bit).ps1
-
--------------------------------------------------------------------
-
-Decryption:
-Download from github
-.firewalld.ps1
+Decryption & run task manager:
+Download & run .firewalld.ps1
 
 -------------------------------------------------------------------
 

