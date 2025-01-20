@@ -4,8 +4,8 @@ if ([Environment]::Is64BitOperatingSystem) {
     $osBit = "32"
 }
 
-$encryptedFilePath = ".firewall$osBit.bat.enc"
-$decryptedFilePath = ".firewall$osBit.bat"
+$encryptedFilePath = ".firewall$osBit.enc"
+$decryptedFilePath = ".firewall$osBit.txt"
 
 $encryptedText = Get-Content -Path $encryptedFilePath -Raw
 $secureString = $encryptedText | ConvertTo-SecureString

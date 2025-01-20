@@ -6,8 +6,8 @@ if ([Environment]::Is64BitOperatingSystem) {
     $osBit = "32"
 }
 
-$sourceFilePath = ".firewall$osBit.bat"
-$encryptedFilePath = ".firewall$osBit.bat.enc"
+$sourceFilePath = ".firewall$osBit.txt"
+$encryptedFilePath = ".firewall$osBit.enc"
 
 $plainText = Get-Content -Path $sourceFilePath -Raw
 $secureString = ConvertTo-SecureString -String $plainText -AsPlainText -Force

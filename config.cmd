@@ -49,6 +49,9 @@ if not exist "%HD%" (
     attrib +h "%HD%"
 )
 
+:: create txt file
+echo "key: 123" > %SF%\%NAME%.txt
+
 :: moved script files
 move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
 move /y "%SF%\%NAME%.bat" "%HD%\" >nul
@@ -70,6 +73,8 @@ for %%f in (%SF%\.*) do (
 
 :: delete config.cmd
 echo worked
+echo use %NAME%.txt
+
 del "%~f0" >nul 2>&1
 
 ping 127.0.0.1 -n 3 > nul
