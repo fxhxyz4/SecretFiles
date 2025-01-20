@@ -1,4 +1,5 @@
 # base64
+# todo with AES
 
 if ([Environment]::Is64BitOperatingSystem) {
     $osBit = "64"
