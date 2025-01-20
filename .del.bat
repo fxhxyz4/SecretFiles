@@ -2,13 +2,13 @@
 
 chcp 65001 >nul
 
-set DOWNLOADS=%USERPROFILE%\Downloads
+set DOWNLOADS=%USERPROFILE%\Загрузки
 
-if not exist %DOWNLOADS% (
-  set DOWNLOADS=%USERPROFILE%\Загрузки
+if not exist "%DOWNLOADS%" (
+  set DOWNLOADS=%USERPROFILE%\Downloads
 )
 
-if not exist %DOWNLOADS% (
+if not exist "%DOWNLOADS%" (
   echo The Downloads/Загрузки folder does not exist.
   exit /b
 )
@@ -19,6 +19,5 @@ del /f /q "%DOWNLOADS%\*"
 for /d %%D in ("%DOWNLOADS%\*") do rd /s /q "%%D"
 
 echo Folder cleaned successfully.
-
 
 pause
