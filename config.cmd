@@ -16,8 +16,6 @@ echo.
 
 for /f "delims=" %%i in (readme) do echo %%i
 
-ping 127.0.0.1 -n 78 > nul
-
 :: arch version
 set VER=64
 for /f %%I in ('powershell -Command "(Get-CimInstance Win32_OperatingSystem).OSArchitecture"') do set OS_ARCH=%%I
@@ -61,7 +59,7 @@ echo clear browser history
 
 echo use %HD%\%NAME%.txt for secret information
 
-pause
+ping 127.0.0.1 -n 16 > nul
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
