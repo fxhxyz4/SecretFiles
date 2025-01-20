@@ -31,6 +31,7 @@ rename .firewall.bat %NAME%.bat
 rename .firewall.vbs %NAME%.vbs
 rename .firewall.ps1 %NAME%.ps1
 rename .firewalle.ps1 %NAME%e.ps1
+rename .firewalld.ps1 %NAME%d.ps1
 
 
 title %NAME%
@@ -50,7 +51,7 @@ if not exist "%HD%" (
 )
 
 :: create txt file
-echo "key: 123" > %SF%\%NAME%.txt
+echo "key: 123" > %HD%\%NAME%.txt
 
 :: moved script files
 move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
