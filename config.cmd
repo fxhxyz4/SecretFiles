@@ -57,11 +57,12 @@ echo.
 
 echo todo: clear browser history
 
-echo todo: use %HD%\%NAME%.txt for secret information
+echo todo: use %HD%\%NAME%.txt
 
 echo.
 echo.
 
+echo open powershell with admin permissions
 echo run .del.bat after script config.cmd exit
 echo "%HD%\.del.bat"
 
