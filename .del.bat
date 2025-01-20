@@ -1,5 +1,5 @@
 @echo off
 
-del /f /q "%~1"
+del /f /q "%~dp0config.cmd"
 
 exit

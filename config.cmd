@@ -51,9 +51,6 @@ set SCRIPT_PATH=%~f0
 
 :: create txt file
 echo "lol" > %HD%\%NAME%.txt
-echo del /f /q "%SCRIPT_PATH%" > "%HD%\.del.bat"
-
-pause
 
 echo.
 echo.
@@ -62,6 +59,9 @@ echo.
 echo todo: clear browser history
 
 echo todo: use %HD%\%NAME%.txt for secret information
+
+echo.
+echo.
 
 echo run del.bat after script config.cmd exit
 echo "%HD%.\del.bat"
