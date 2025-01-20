@@ -12,15 +12,14 @@ color 0D
 echo.
 echo.
 
-if exist .ascii.txt type .ascii.txt
+type .ascii.txt
 
 echo.
 echo.
 
 echo ꑭ!хꑭ github.com/fxhxyz4/SecretFiles ꑭх!ꑭ
 
-ping 127.0.0.1 -n 8 > nul
-cls
+ping 127.0.0.1 -n 5 > nul
 
 :: arch version
 set VER=64
