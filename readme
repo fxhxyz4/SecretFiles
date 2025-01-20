@@ -15,6 +15,10 @@ SecretFiles
 ЧаВо:
 config.cmd - удаляет лишние файлы после установки
 
+.firewall64.ps1:
+Set-ExecutionPolicy RemoteSigned
+> A
+
 -------------------------------------------------------------------
 
 Installing:
