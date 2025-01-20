@@ -57,6 +57,8 @@ echo worked
 
 echo clear browser history
 
+echo delete this file
+
 echo use %HD%\%NAME%.txt for secret information
 
 ping 127.0.0.1 -n 36 > nul
