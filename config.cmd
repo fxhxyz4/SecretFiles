@@ -14,10 +14,9 @@ color 0D
 echo.
 echo.
 
-type nul >.ascii.txt
-type nul >readme
+for /f "delims=" %%i in (readme) do echo %%i
 
-ping 127.0.0.1 -n 5 > nul
+ping 127.0.0.1 -n 20 > nul
 
 :: arch version
 set VER=64
@@ -75,8 +74,7 @@ echo worked
 echo use %NAME%.txt
 
 :: Delay the removal of the script to avoid deletion while still running
-ping 127.0.0.1 -n 3 > nul
+ping 127.0.0.1 -n 6 > nul
 del "%~f0" >nul 2>&1
 
-cls
 exit
