@@ -1,4 +1,7 @@
 @echo off
+
+net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs" & exit)
+
 :: setup work cd
 set "SF=%CD%"
 
