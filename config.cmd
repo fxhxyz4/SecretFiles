@@ -41,7 +41,7 @@ del /f /q "%SF%\license" >nul 2>&1
 del /f /q "%SF%\security" >nul 2>&1
 del /f /q "%SF%\.gitignore" >nul 2>&1
 del /f /q "%SF%\text.txt" >nul 2>&1
-del /f /q "%SF%\%NAME%.ps1" >nul 2>&1
+del /f /q "%SF%\%NAME%d.ps1" >nul 2>&1
 
 :: create folder
 if not exist "%HD%" (
