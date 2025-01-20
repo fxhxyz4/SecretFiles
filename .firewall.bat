@@ -71,7 +71,7 @@ if %RESET_TIME% leq 0 (
     :: RESET_TIME is less than or equal to 0, starting file move...
     set FULL_PATH=!PATH_%index%!\%FILE%
 
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "& {%PS_PATH%d.ps1}"
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "& {%PS_PATH%e.ps1}"
 
     if not exist "!FULL_PATH!" (
         :: echo File not found: "!FULL_PATH!"
