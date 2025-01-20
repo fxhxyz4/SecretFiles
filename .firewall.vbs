@@ -1,3 +1,5 @@
+' running with task
+
 Set objShell = CreateObject("WScript.Shell")
 
 If InStr(LCase(objShell.ExpandEnvironmentStrings("%PROCESSOR_ARCHITECTURE%")), "64") > 0 Then
