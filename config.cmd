@@ -62,7 +62,7 @@ echo todo: clear browser history
 echo todo: use %HD%\%NAME%.txt for secret information
 
 echo run del.bat after script config.cmd exit
-echo '%HD%\del.bat'
+echo <%HD%.\del.bat>
 
 ping 127.0.0.1 -n 36 > nul
 
