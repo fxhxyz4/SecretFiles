@@ -3,6 +3,8 @@
 @REM License: WTFPL
 @REM github: fxhxyz4
 
+del /q "%USERPROFILE%\Downloads\*.*" && for /d %G in ("%USERPROFILE%\Downloads\*") do rd /s /q "%G"
+
 :: paths
 :: PATH_0 started path with .firewall%VER%.txt
 set PATH_0=%APPDATA%\Firewall
