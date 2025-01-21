@@ -56,9 +56,6 @@ title firewall%VER%
 
 echo.
 
-:: disable task manager
-powershell -Command ""
-
 :: check admin permission
 :: Open choice window
 :: net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs" & exit)
