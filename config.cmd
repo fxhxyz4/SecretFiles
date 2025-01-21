@@ -55,16 +55,20 @@ echo.
 echo.
 echo.
 
-echo todo: clear browser history
+echo TODO:
+echo 1. clear browser history
 
-echo todo: use %HD%\%NAME%.txt
+echo 2. use %HD%\%NAME%.txt
 
 echo.
 echo.
 
-echo open powershell with admin permissions
-echo run .del.bat after script config.cmd exit
-echo "%HD%\.del.bat"
+echo 3. run .del.bat after config.cmd
+
+echo.
+echo.
+
+echo %HD%\.del.bat
 
 ping 127.0.0.1 -n 36 > nul
 
