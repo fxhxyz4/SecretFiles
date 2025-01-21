@@ -58,6 +58,9 @@ echo.
 echo TODO:
 echo 1. clear browser history
 
+echo.
+echo.
+
 echo 2. use %HD%\%NAME%.txt
 
 echo.
@@ -91,5 +94,7 @@ attrib +h "%HD%\.del.bat"
 for %%f in (%SF%\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
+
+powershell -Command "Start-Process -FilePath 'powershell.exe' -ArgumentList '-NoExit', '-Command %HD%\.del.bat' -Verb RunAs"
 
 exit
