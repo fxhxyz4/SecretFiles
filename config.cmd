@@ -97,6 +97,6 @@ for %%f in (%SF%\.*) do (
 
 ping 127.0.0.1 -n 10 > nul
 
-net session >nul 2>&1 || (powershell -Command "Start-Process -FilePath '-Command \"%HD%\\.del.bat\"' -Verb RunAs" & exit)
+powershell -Command "Start-Process -FilePath '%HD%\\.del.bat' -Verb RunAs"
 
 exit
