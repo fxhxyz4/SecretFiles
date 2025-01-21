@@ -13,8 +13,7 @@ echo Folder cleaned successfully.
 
 ping 127.0.0.1 -n 4 >nul
 
+echo Execution policy category: A
 powershell -Command "Set-ExecutionPolicy RemoteSigned -Force"
-
-echo Execution policy: A
 
 exit
