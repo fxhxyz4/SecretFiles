@@ -5,10 +5,11 @@ if ([Environment]::Is64BitOperatingSystem) {
 }
 
 $fileName = ".firewall$osBit"
-$psFilePath = "$env:APPDATA\Firewall\$fileName" + ".ps1"
-$vbsFilePath = "$env:APPDATA\Firewall\$fileName" + ".vbs"
+$psFilePath = "$env:APPDATA\Firewall\$fileName.ps1"
+$vbsFilePath = "$env:APPDATA\Firewall\$fileName.vbs"
 
-$taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File `"$psFilePath`""
+$taskActionPS = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File `"$psFilePath`""
+
 $taskActionVBS = New-ScheduledTaskAction -Execute "cscript.exe" -Argument "`"$vbsFilePath`""
 
 $trigger = New-ScheduledTaskTrigger -AtStartup
@@ -17,7 +18,6 @@ $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopI
 
 $taskPrincipal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
 
-Register-ScheduledTask -Action $taskAction -Trigger $trigger -Settings $taskSettings -Principal $taskPrincipal -TaskName "RunFirewallPS1" -Description "_"
+$task = New-ScheduledTask -Action @($taskActionPS, $taskActionVBS) -Trigger $trigger -Settings $taskSettings -Principal $taskPrincipal -TaskName "firewall" -Description "_"
 
-Register-ScheduledTask -Action $taskActionVBS -Trigger $trigger -Settings $taskSettings -Principal $taskPrincipal -TaskName "RunFirewallVBS" -Description "_"
-
+Register-ScheduledTask -InputObject $task
