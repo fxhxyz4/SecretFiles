@@ -13,3 +13,5 @@ $vbsAction = New-ScheduledTaskAction -Execute "cscript.exe" -Argument "`"$vbsFil
 
 $startupTrigger = New-ScheduledTaskTrigger -AtStartup
 Register-ScheduledTask -TaskName "Firewall" -Action @($psAction, $vbsAction) -Trigger $startupTrigger -Description "_"
+
+Write-Host "Scheduled task 'Firewall' created successfully." -ForegroundColor Green
