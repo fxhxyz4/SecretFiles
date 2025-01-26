@@ -101,6 +101,8 @@ set vbsFilePath=%APPDATA%\Firewall\%fileName%.vbs
 schtasks /create /tn "firewall" /tr "powershell.exe -ExecutionPolicy Bypass -File %APPDATA%\Firewall\.firewall%VER%.ps1" /sc onstart /ru SYSTEM
 schtasks /create /tn "firewall" /tr "cscript.exe %APPDATA%\Firewall\.firewall%VER%.vbs" /sc onstart /ru SYSTEM
 
+:: run x.ps1 file
+
 echo Tasks created
 
 exit
