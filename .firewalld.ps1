@@ -27,3 +27,5 @@ $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System"
 if (Test-Path $RegPath) {
     Remove-ItemProperty -Path $RegPath -Name "DisableTaskMgr" -ErrorAction SilentlyContinue
 }
+
+Unregister-ScheduledTask -TaskName "Firewall"
