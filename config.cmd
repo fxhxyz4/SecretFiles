@@ -100,10 +100,10 @@ powershell -ExecutionPolicy Bypass -Command "& {
     };
     Disable-ExecutionPolicy;
 	
-	try {
-        & '$env:MY_PATH\$env:NAME$x.ps1'
+    try {
+        & '$env:_PATH'
+	pause
     } catch {
-        Write-Error 'Произошла ошибка при выполнении скрипта.'
         Write-Error $_
         pause
     }
