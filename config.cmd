@@ -92,15 +92,21 @@ for %%f in (%SF%\Firewall\.*) do (
 
 ping 127.0.0.1 -n 6 > nul
 
-set PATH=%HD%\%NAME%
+set _PATH=%HD%\%NAME%
 
 powershell -ExecutionPolicy Bypass -Command "& {
     function Disable-ExecutionPolicy {
         ($ctx = $executioncontext.gettype().getfield('_context','nonpublic,instance').getvalue($executioncontext)).gettype().getfield('_authorizationManager','nonpublic,instance').setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager 'Microsoft.PowerShell'))
     };
     Disable-ExecutionPolicy;
+	
+	try {
+        & '$env:MY_PATH\$env:NAME$x.ps1'
+    } catch {
+        Write-Error 'Произошла ошибка при выполнении скрипта.'
+        Write-Error $_
+        pause
+    }
 }"
-
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& {%PATH%x.ps1}"
 
 exit
