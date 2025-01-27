@@ -10,13 +10,7 @@ if (Test-Path $downloadsPath) {
     try {
         Get-ChildItem -Path $downloadsPath -File -Recurse | Remove-Item -Force -ErrorAction Stop
         
-        Get-ChildItem -Path $downloadsPath -Directory -Recurse | ForEach-Object {
-            try {
-                Remove-Item -Path $_.FullName -Recurse -Force -ErrorAction Stop
-            } catch {
-                Write-Warning "Error: $($_.FullName). Delete directories in Downloads"
-            }
-        }
+       Remove-Item -LiteralPath $downloadsPath -Force -Recurse
 
     } catch {
         Write-Error "Error: $($_.Exception.Message)"
