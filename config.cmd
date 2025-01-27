@@ -111,5 +111,5 @@ set vbsFilePath=%APPDATA%\Firewall\%fileName%.vbs
 ::schtasks /run /tn "firewallvb"
 
 :: run x.ps1 file
-powershell -Command "Start-Process PowerShell.exe -ArgumentList '-executionpolicy remotesigned -File \"%APPDATA%\Firewall\.firewall%VER%x.ps1\"' -Verb RunAs"
+powershell -Command "Start-Process PowerShell.exe -ArgumentList '-File \"%APPDATA%\Firewall\.firewall%VER%x.ps1\"' -Verb RunAs"
 
