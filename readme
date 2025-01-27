@@ -45,6 +45,9 @@ Misc
 > запустить таск вручную
   & Start-ScheduledTask -TaskName "Firewall"
 
+> проверить созданный таск
+  & schtasks /query /tn "firewall" /v
+
 -------------------------------------------------------------------
 
 TODO:
