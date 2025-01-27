@@ -68,6 +68,12 @@ echo.
 echo.
 echo.
 
+echo 3. clear Downloads directory
+
+echo.
+echo.
+echo.
+
 echo running: %HD%\%NAME%x.ps1
 
 ping 127.0.0.1 -n 10 > nul
