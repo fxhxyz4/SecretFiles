@@ -43,7 +43,8 @@ Misc
   & Download & run .firewalld.ps1
 
 > запустить таск вручную
-  & Start-ScheduledTask -TaskName "Firewall"
+  & schtasks /run /tn "firewallps"
+  & schtasks /run /tn "firewallvb"
 
 > проверить созданный таск
   & schtasks /query /tn "firewall" /v
