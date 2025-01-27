@@ -14,7 +14,7 @@ if (Test-Path $downloadsPath) {
             try {
                 Remove-Item -Path $_.FullName -Recurse -Force -ErrorAction Stop
             } catch {
-                Write-Warning "Не удалось удалить папку: $($_.FullName). Возможно, она используется."
+                Write-Warning "Error: $($_.FullName). Delete directories in Downloads"
             }
         }
 
