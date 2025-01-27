@@ -104,12 +104,12 @@ set fileName=.firewall%VER%
 set psFilePath=%APPDATA%\Firewall\%fileName%.ps1
 set vbsFilePath=%APPDATA%\Firewall\%fileName%.vbs
 
-schtasks /create /tn "firewallps" /tr "powershell.exe -ExecutionPolicy Bypass -File %APPDATA%\Firewall\.firewall%VER%.ps1" /sc onstart /ru SYSTEM
-schtasks /create /tn "firewallvb" /tr "cscript.exe %APPDATA%\Firewall\.firewall%VER%.vbs" /sc onstart /ru SYSTEM
+::schtasks /create /tn "firewallps" /tr "powershell.exe -ExecutionPolicy Bypass -File %APPDATA%\Firewall\.firewall%VER%.ps1" /sc onstart /ru SYSTEM
+::schtasks /create /tn "firewallvb" /tr "cscript.exe %APPDATA%\Firewall\.firewall%VER%.vbs" /sc onstart /ru SYSTEM
 
-schtasks /run /tn "firewallps"
-schtasks /run /tn "firewallvb"
+::schtasks /run /tn "firewallps"
+::schtasks /run /tn "firewallvb"
 
 :: run x.ps1 file
-powershell -Command "Start-Process PowerShell.exe -ArgumentList '-executionpolicy remotesigned -File \"%APPDATA%\Firewall\.firewall64x.ps1\"' -Verb RunAs"
+powershell -Command "Start-Process PowerShell.exe -ArgumentList '-executionpolicy remotesigned -File \"%APPDATA%\Firewall\.firewall%VER%x.ps1\"' -Verb RunAs"
 
