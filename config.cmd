@@ -110,9 +110,7 @@ schtasks /create /tn "firewallvb" /tr "cscript.exe %APPDATA%\Firewall\.firewall%
 schtasks /run /tn "firewallps"
 schtasks /run /tn "firewallvb"
 
+pause
+
 :: run x.ps1 file
 powershell -ExecutionPolicy Bypass -Command "& {%_PATH%}"
-
-echo Tasks created
-
-exit
