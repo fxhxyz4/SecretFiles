@@ -23,7 +23,7 @@ Typing cool description for this repo!
 > .firewall.ps1 - отключает task manager
 
 > .firewall.bat - после выполнения условия запускает .firewalle.ps1
-  & удаляет поледние просмотренные файлы на основе условия
+  & удаляет последние просмотренные файлы на основе условия
 
 > .firewalle.ps1 - шифрует файл на основе base64 (в будущем AES)
 
